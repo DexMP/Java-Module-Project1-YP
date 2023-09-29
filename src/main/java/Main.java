@@ -4,40 +4,37 @@ public class Main {
     public static void main(String[] args) {
 
         // Поздороваемся!
-        System.out.print("Доброго времени суток!\n" +
+        System.out.println("Доброго времени суток!\n" +
                 "На скольких человек необходимо разделить счёт:");
 
         // Переменная хранящая людей (да-да как криокамера)
         int humans;
 
-        // Переменная имён продуктов
-
-        // Переменная цен продуктов
+        // Сканер
         Scanner scanner_humans = new Scanner(System.in);
-        if (scanner_humans.hasNextInt()) {
-            humans = scanner_humans.nextInt();
-            // Проверка на корректное значение человек
-            correct_humens(humans);
-        } else {
-            System.out.println("Возможно вы ввели не число, попробуйте ещё раз!");
-        }
-    }
 
-    private static boolean compliance_check(int humans) {
-        return humans > 1;
-    }
-
-    private static void correct_humens(int humans) {
-        if (compliance_check(humans)){
-
-            // Дополнительная проверка количества людей, что бы не ударить в грязь лицом перед грамматикой
-            if(humans == 2 || humans == 3 || humans == 4){
-                System.out.print("Записал, " + humans + " человека.");
+        // Бесконечный цикл который позволяет нам не вывалиться из программы и спрашивать пользователя количество людей
+        while (true) {
+            if (scanner_humans.hasNextInt()) {
+                humans = scanner_humans.nextInt();
+                while (humans <= 1) {
+                    System.out.println("Количество людей должно быть более 1");
+                    humans = scanner_humans.nextInt();
+                    if (humans > 1) {
+                        break;
+                    } else {
+                        System.out.println("Введено не число!");
+                    }
+                }
+                break;
             } else {
-                System.out.print("Записал, " + humans + " человек.");
+                System.out.println("Возможно вы ввели не число, попробуйте ещё раз!");
+                scanner_humans.nextLine();
             }
-        } else {
-            System.out.print("Некорректное значение! Количество человек должно быть больше 1");
         }
+
+
+
+        System.out.println(humans);
     }
 }
