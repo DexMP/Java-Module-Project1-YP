@@ -1,10 +1,8 @@
 public class Product {
 
     String productName;
-    double productPrice;
 
-    public Product(String productName, double productPrice) {
+    public Product(String productName) {
         this.productName = productName;
-        this.productPrice = productPrice;
     }
 }
