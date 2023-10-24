@@ -37,43 +37,37 @@ public class Main {
         }
 
         System.out.println(humans);
-        System.out.println("Что было в заказе:");
         // Получаем товары
         while (true) {
-            // Наименование
+            System.out.println("Название товара:");
             if (scanner_products.hasNext()) {
                 products = scanner_products.nextLine();
-                while (products.isEmpty()) {
-                    System.out.println("Нет данных");
-                    products = scanner_products.nextLine();
-                    if (!products.isEmpty()) {
-                        break;
-                    }
-                }
+                if (!products.equalsIgnoreCase("завершить")) {
+                    System.out.println("Название: " + products);
+                    System.out.println("Укажите цену товара в формате рубли.копейки: ");
+                    if (scanner_prices.hasNextDouble()) {
+                        price = scanner_prices.nextDouble();
+                        while (price <= 0) {
+                            System.out.println("Значение не может быть 0 или меньше!");
+                            price = scanner_prices.nextDouble();
+                            if (price > 0) {
+                                System.out.println("Цена: " + price);
 
-                System.out.println("Цена товара в формате 'рубли.копейки':");
-
-                // Цена
-                if (scanner_prices.hasNextDouble()) {
-                    price = scanner_prices.nextDouble();
-                    while (price <= 1) {
-                        System.out.println("Значение не может быть меньше 1");
-                        price = scanner_products.nextDouble();
-                        if (price > 1) {
-                            product = new Product(products, price);
-                            break;
+                                break;
+                            }
                         }
+                    } else {
+                        System.out.println("Кажется вы указали неверный формат!");
+                        scanner_prices.hasNextDouble();
                     }
                 } else {
-                    System.out.println("Неверный формат записи");
-                    scanner_prices.hasNextDouble();
+                    // Отсылка на фильм Первому Игроку приготовиться)
+                    System.out.println("Спасибо что играл в мою игру!");
+                    break;
                 }
             } else {
-                System.out.println("Не удалось прочитать, попробуйте снова");
+                System.out.println("Не получено данных о товаре!");
                 scanner_products.nextLine();
-            }
-            if (product != null) {
-                System.out.println("Наиименование" + product.productName + "\nЦена: " + product.productPrice);
             }
         }
     }
