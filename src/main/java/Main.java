@@ -52,7 +52,7 @@ public class Main {
                             System.out.println("Значение не может быть 0 или меньше!");
                             price = scanner_prices.nextDouble();
                             if (price > 0) {
-                                System.out.println("Цена: " + String.format("%.2f", price));
+                                System.out.println(String.format("Цена: %.2f", price));
                                 break;
                             }
                         }
