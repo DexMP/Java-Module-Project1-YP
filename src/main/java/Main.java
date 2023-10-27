@@ -58,7 +58,7 @@ public class Main {
                         }
                         summ += price;
                         System.out.println("Добавленные товары:");
-                        for (int i = 0; i < productsName.size(); i++) {
+                        for (Product name : productsName) {
                             System.out.println("* " + productsName.get(i).productName);
                         }
                         System.out.println("Сумма: " + String.format("%.2f", summ));
